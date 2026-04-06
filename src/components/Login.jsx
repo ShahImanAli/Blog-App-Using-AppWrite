@@ -43,15 +43,6 @@ function Login() {
         <h2 className="text-center text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
           Welcome back
         </h2>
-        <p className="mt-1.5 text-center text-sm sm:text-base text-gray-600">
-          Don&apos;t have an account?{" "}
-          <Link
-            to="/signup"
-            className="font-semibold text-gray-900 hover:text-gray-700 underline underline-offset-2 transition-colors"
-          >
-            Sign up
-          </Link>
-        </p>
         {error && (
           <p className="text-red-700 mt-6 text-center bg-red-50 py-2.5 px-4 rounded-md text-sm border border-red-100">
             {error}
@@ -87,6 +78,15 @@ function Login() {
             >
               Sign in
             </Button>
+            <p className="text-center text-sm sm:text-base text-gray-600">
+              Don&apos;t have an account?{" "}
+              <Link
+                to="/signup"
+                className="font-semibold text-gray-900 hover:text-gray-700 underline underline-offset-2 transition-colors"
+              >
+                Sign up
+              </Link>
+            </p>
           </div>
         </form>
       </div>
