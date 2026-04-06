@@ -112,16 +112,6 @@ npm run build
 
 The build files will be in the `dist` directory, ready for deployment.
 
-## 🌐 Deployment
-
-This project can be easily deployed to:
-
-- [Vercel](https://vercel.com)
-- [Netlify](https://netlify.com)
-- [GitHub Pages](https://pages.github.com)
-
-Make sure to set your environment variables in your deployment platform.
-
 ## 📝 Usage
 
 1. **Sign Up**: Create a new account to start blogging
@@ -138,10 +128,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
