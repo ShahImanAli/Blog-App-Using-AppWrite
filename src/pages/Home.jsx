@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Home() {
+  const authStatus = useSelector((state) => state.auth.status);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -23,7 +24,7 @@ export default function Home() {
       .finally(() => {
         setLoading(false);
       });
-  }, [useSelector((state) => state.auth.status)]);
+  }, [authStatus]);
 
   // Loading skeleton
   if (loading) {
@@ -61,29 +62,42 @@ export default function Home() {
           {/* Hero Section */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div className="text-center">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight mb-6">
+              <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-gray-900 tracking-tighter mb-8 leading-tight">
                 Share your stories with <br className="hidden sm:block" />
                 <span className="text-gray-900">the world</span>
               </h1>
-              <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Create, publish, and share your thoughts with a community of
-                readers. Start your blogging journey today.
+              <p className="mt-8 text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
+                {authStatus
+                  ? "You're logged in and ready to share. Create, publish, and share your thoughts with a community of readers."
+                  : "Create, publish, and share your thoughts with a community of readers. Start your blogging journey today."
+                }
               </p>
 
               {/* CTA Buttons */}
-              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link
-                  to="/signup"
-                  className="px-8 py-3.5 bg-gray-900 text-white font-semibold rounded-md hover:bg-gray-800 transition-colors shadow-sm w-full sm:w-auto text-center"
-                >
-                  Get started
-                </Link>
-                <Link
-                  to="/login"
-                  className="px-8 py-3.5 bg-white text-gray-900 font-semibold rounded-md hover:bg-gray-50 transition-colors border border-gray-300 w-full sm:w-auto text-center"
-                >
-                  Sign in
-                </Link>
+              <div className="mt-12 flex flex-col sm:flex-row gap-6 justify-center items-center">
+                {authStatus ? (
+                  <Link
+                    to="/add-post"
+                    className="px-12 py-4 text-2xl bg-gray-900 text-white font-black rounded-full hover:bg-gray-800 transition-all hover:scale-105 shadow-lg w-full sm:w-auto text-center"
+                  >
+                    Add Post
+                  </Link>
+                ) : (
+                  <>
+                    <Link
+                      to="/signup"
+                      className="px-12 py-4 text-2xl bg-gray-900 text-white font-black rounded-full hover:bg-gray-800 transition-all hover:scale-105 shadow-lg w-full sm:w-auto text-center"
+                    >
+                      Get started
+                    </Link>
+                    <Link
+                      to="/login"
+                      className="px-12 py-4 text-2xl bg-white text-gray-900 font-black rounded-full hover:bg-gray-50 transition-all hover:scale-105 border-2 border-gray-900 w-full sm:w-auto text-center"
+                    >
+                      Sign in
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>

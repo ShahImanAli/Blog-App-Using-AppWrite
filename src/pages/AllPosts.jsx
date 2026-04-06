@@ -5,13 +5,28 @@ import appwriteService from "../appwrite/config";
 export default function AllPosts() {
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    appwriteService.getPosts([]).then((posts) => {
+      if (posts) {
+        setPosts(posts.documents);
+      }
+    });
+  }, []);
 
-  appwriteService.getPosts([]).then((posts) => {
-    if (posts) {
-      setPosts(posts.documents);
-    }
-  });
+  if (posts.length === 0) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-12 flex items-center justify-center">
+        <Container>
+          <div className="text-center">
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-6">
+              No posts found
+            </h1>
+            <p className="text-gray-600">Please check back later or add your first post!</p>
+          </div>
+        </Container>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-12">
